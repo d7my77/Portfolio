@@ -267,24 +267,13 @@
   filter: brightness(0.42);
 }
 
-.hero-video-1 {
-  animation: heroFade1 8s ease-in-out infinite;
+.hero-background .hero-video {
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
 }
 
-.hero-video-2 {
-  animation: heroFade2 8s ease-in-out infinite;
-}
-
-@keyframes heroFade1 {
-  0%, 37.5% { opacity: 1; }
-  50%, 87.5% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes heroFade2 {
-  0%, 37.5% { opacity: 0; }
-  50%, 87.5% { opacity: 1; }
-  100% { opacity: 0; }
+.hero-background .hero-video.is-active {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -307,20 +296,21 @@
     
     <div class="stage">
 <div class="hero-background">
-  <video class="hero-video hero-video-1"
-         autoplay muted loop playsinline preload="auto">
+  <video class="hero-video hero-video-1 is-active"
+         muted playsinline preload="auto">
     <source src="hero-01.mp4" type="video/mp4">
   </video>
 
   <video class="hero-video hero-video-2"
-         autoplay muted loop playsinline preload="auto">
+         muted playsinline preload="auto">
     <source src="hero-02.mp4" type="video/mp4">
   </video>
+
+  <video class="hero-video hero-video-3"
+         muted playsinline preload="auto">
+    <source src="hero-03.mp4" type="video/mp4">
+  </video>
 </div>
-
-      <div class="scroll-cue">SCROLL TO DISCOVER ↓</div>
-
-    </div>
   </section>
 
   <section class="work" id="work">
@@ -417,6 +407,67 @@ document.querySelectorAll(".project-card").forEach(card => {
     video.currentTime = 0;
   });
 });
+    // Cinematic hero video sequence
+const heroVideos = Array.from(
+  document.querySelectorAll(".hero-background .hero-video")
+);
+
+let currentHero = 0;
+let heroTimer;
+
+const heroFadeDuration = 700;
+
+function playHero(index) {
+  const video = heroVideos[index];
+  if (!video) return;
+
+  video.currentTime = 0;
+
+  const playPromise = video.play();
+  if (playPromise) {
+    playPromise.catch(() => {});
+  }
+}
+
+function scheduleNextHero() {
+  clearTimeout(heroTimer);
+
+  const video = heroVideos[currentHero];
+  const duration = Number.isFinite(video.duration) && video.duration > 0
+    ? video.duration * 1000
+    : 4000;
+
+  const displayTime = Math.max(1000, duration - heroFadeDuration);
+
+  heroTimer = setTimeout(() => {
+    const nextHero = (currentHero + 1) % heroVideos.length;
+    const outgoing = heroVideos[currentHero];
+    const incoming = heroVideos[nextHero];
+
+    playHero(nextHero);
+    incoming.classList.add("is-active");
+    outgoing.classList.remove("is-active");
+
+    currentHero = nextHero;
+
+    setTimeout(() => {
+      outgoing.pause();
+      outgoing.currentTime = 0;
+    }, heroFadeDuration);
+
+    scheduleNextHero();
+  }, displayTime);
+}
+
+if (heroVideos.length > 0) {
+  heroVideos.forEach((video) => {
+    video.muted = true;
+    video.playsInline = true;
+  });
+
+  playHero(0);
+  scheduleNextHero();
+}
   </script>
 
 </body>
