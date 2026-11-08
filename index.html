@@ -407,59 +407,70 @@ document.querySelectorAll(".project-card").forEach(card => {
     video.currentTime = 0;
   });
 });
-    // Cinematic hero video sequence
+   // Cinematic hero video sequence
 const heroVideos = Array.from(
   document.querySelectorAll(".hero-background .hero-video")
 );
 
 let currentHero = 0;
-let heroTimer;
+let heroTimer = null;
 
 const heroFadeDuration = 700;
+const fallbackDurations = [4500, 4000, 1700];
 
-function playHero(index) {
-  const video = heroVideos[index];
-  if (!video) return;
-
+function startHeroVideo(video) {
+  video.pause();
   video.currentTime = 0;
+  video.muted = true;
 
-  const playPromise = video.play();
-  if (playPromise) {
-    playPromise.catch(() => {});
-  }
+  const promise = video.play();
+  if (promise) promise.catch(console.warn);
 }
 
-function scheduleNextHero() {
+function showNextHero() {
+  if (heroVideos.length < 2) return;
+
+  const outgoing = heroVideos[currentHero];
+  const nextIndex = (currentHero + 1) % heroVideos.length;
+  const incoming = heroVideos[nextIndex];
+
+  startHeroVideo(incoming);
+
+  incoming.classList.add("is-active");
+  outgoing.classList.remove("is-active");
+
+  currentHero = nextIndex;
+
+  setTimeout(() => {
+    outgoing.pause();
+    outgoing.currentTime = 0;
+  }, heroFadeDuration);
+
+  scheduleHero();
+}
+
+function scheduleHero() {
   clearTimeout(heroTimer);
 
   const video = heroVideos[currentHero];
   const duration = Number.isFinite(video.duration) && video.duration > 0
     ? video.duration * 1000
-    : 4000;
+    : fallbackDurations[currentHero] || 4000;
 
-  const displayTime = Math.max(1000, duration - heroFadeDuration);
+  const wait = Math.max(1000, duration - heroFadeDuration);
 
-  heroTimer = setTimeout(() => {
-    const nextHero = (currentHero + 1) % heroVideos.length;
-    const outgoing = heroVideos[currentHero];
-    const incoming = heroVideos[nextHero];
-
-    playHero(nextHero);
-    incoming.classList.add("is-active");
-    outgoing.classList.remove("is-active");
-
-    currentHero = nextHero;
-
-    setTimeout(() => {
-      outgoing.pause();
-      outgoing.currentTime = 0;
-    }, heroFadeDuration);
-
-    scheduleNextHero();
-  }, displayTime);
+  heroTimer = setTimeout(showNextHero, wait);
 }
 
-if (heroVideos.length > 0) {
+if (heroVideos.length) {
+  heroVideos.forEach(video => {
+    video.muted = true;
+    video.playsInline = true;
+  });
+
+  startHeroVideo(heroVideos[0]);
+  scheduleHero();
+}
   heroVideos.forEach((video) => {
     video.muted = true;
     video.playsInline = true;
