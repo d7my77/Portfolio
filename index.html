@@ -245,18 +245,16 @@
 .project-card:hover .project-arrow {
   transform: translate(5px, -5px);
 }
-    /* Cinematic hero background */
-.cinematic {
-  position: relative;
+  /* Cinematic hero background */
+.stage {
   isolation: isolate;
 }
+
 .hero-background {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  margin-bottom: -100vh;
-  overflow: hidden;
+  position: absolute;
+  inset: 0;
   z-index: -1;
+  overflow: hidden;
   pointer-events: none;
 }
 
@@ -272,6 +270,10 @@
     display: none;
   }
 }
+  .hero-background video {
+    display: none;
+  }
+}
   </style>
 </head>
 
@@ -283,20 +285,14 @@
   </nav>
 
   <section class="cinematic" id="cinematic">
-    <div class="hero-background">
-  <video
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    poster="film-commission-cover.jpg"
-  >
+    
+    <div class="stage">
+<div class="hero-background">
+  <video autoplay muted loop playsinline preload="auto"
+         poster="film-commission-cover.jpg">
     <source src="hero-01.mp4" type="video/mp4">
   </video>
 </div>
-    <div class="stage">
-
       <div class="scene statement" id="statement">
         <div class="eyebrow">A Creative Point of View</div>
         <h1>
