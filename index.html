@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Portfolio</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #101114;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      padding: 35px 7%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    main {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 7%;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 110px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -3px;
+      max-width: 1100px;
+      animation: reveal 1.5s ease both;
+    }
+
+    h1 span { color: #777b83; }
+
+    p {
+      color: #aaa;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      h1 { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div>CREATIVE PORTFOLIO</div>
+    <div>EST. 2026</div>
+  </nav>
+
+  <main>
+    <p>CREATIVE DIRECTION / IDEAS / STORYTELLING</p>
+    <h1>
+      Ideas deserve<br>
+      more than attention.<br>
+      <span>They deserve meaning.</span>
+    </h1>
+    <p>SELECTED WORK & CREATIVE THINKING</p>
+  </main>
+</body>
+</html>
