@@ -4,74 +4,251 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Portfolio</title>
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="description" content="The creative portfolio of Abdulrahman Alyahya, Associate Creative Director.">
+  <title>Abdulrahman Alyahya — Associate Creative Director</title>
+
   <style>
+    :root {
+      --bg: #0b0c0e;
+      --white: #f3f2ef;
+      --muted: #888b92;
+      --line: #303238;
+    }
+
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background: #101114;
-      color: #f5f5f5;
-      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     nav {
-      padding: 35px 7%;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 6%;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
+      gap: 20px;
+      font-size: 10px;
       letter-spacing: 2px;
+      color: var(--muted);
     }
 
-    main {
-      min-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .cinematic {
+      height: 230vh;
+      position: relative;
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
       padding: 7%;
     }
 
-    h1 {
-      font-size: clamp(42px, 7vw, 110px);
-      font-weight: 500;
-      line-height: 1.05;
-      letter-spacing: -3px;
-      max-width: 1100px;
-      animation: reveal 1.5s ease both;
+    .scene {
+      position: absolute;
+      width: 86%;
+      max-width: 1250px;
+      will-change: opacity, transform;
     }
 
-    h1 span { color: #777b83; }
+    .statement {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    p {
-      color: #aaa;
+    .identity {
+      opacity: 0;
+      transform: translateY(45px);
+    }
+
+    .eyebrow {
+      font-size: 11px;
       letter-spacing: 3px;
-      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 28px;
     }
 
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    h1 {
+      font-size: clamp(45px, 7.5vw, 118px);
+      line-height: 1.06;
+      letter-spacing: -0.055em;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    h1 span { color: var(--muted); }
+
+    .identity h1 {
+      font-size: clamp(48px, 8vw, 125px);
+      text-transform: uppercase;
+    }
+
+    .role {
+      margin-top: 35px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #a7a9af;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 38px;
+      left: 7%;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    .work {
+      min-height: 85vh;
+      padding: 140px 7%;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .work h2 {
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      margin: 55px 0;
+    }
+
+    .work p {
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 24px 7%; font-size: 9px; }
+      .eyebrow { font-size: 9px; }
+      .role { font-size: 10px; line-height: 1.8; }
+      .cinematic { height: 200vh; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      h1 { animation: none; }
+      html { scroll-behavior: auto; }
+      .cinematic { height: auto; }
+      .stage { position: relative; min-height: 100svh; }
+      .statement { display: none; }
+      .identity {
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <nav>
-    <div>CREATIVE PORTFOLIO</div>
-    <div>EST. 2026</div>
+    <div>ABDULRAHMAN ALYAHYA</div>
+    <div>PORTFOLIO / 2026</div>
   </nav>
 
-  <main>
-    <p>CREATIVE DIRECTION / IDEAS / STORYTELLING</p>
-    <h1>
-      Ideas deserve<br>
-      more than attention.<br>
-      <span>They deserve meaning.</span>
-    </h1>
-    <p>SELECTED WORK & CREATIVE THINKING</p>
-  </main>
+  <section class="cinematic" id="cinematic">
+    <div class="stage">
+
+      <div class="scene statement" id="statement">
+        <div class="eyebrow">A Creative Point of View</div>
+        <h1>
+          Ideas are everywhere.<br>
+          <span>Meaning isn't.</span>
+        </h1>
+      </div>
+
+      <div class="scene identity" id="identity">
+        <div class="eyebrow">The Mind Behind The Work</div>
+        <h1>
+          Abdulrahman<br>
+          Alyahya.
+        </h1>
+        <div class="role">ASSOCIATE CREATIVE DIRECTOR</div>
+      </div>
+
+      <div class="scroll-cue">SCROLL TO DISCOVER ↓</div>
+
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="section-label">01 / SELECTED WORK</div>
+    <h2>Work that<br>means something.</h2>
+    <p>
+      A selection of creative projects shaped by
+      insight, storytelling, and a belief that
+      every great idea should have a reason to exist.
+    </p>
+  </section>
+
+  <footer>
+    © 2026 ABDULRAHMAN ALYAHYA
+  </footer>
+
+  <script>
+    const section = document.getElementById("cinematic");
+    const statement = document.getElementById("statement");
+    const identity = document.getElementById("identity");
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    const clamp = (value, min, max) =>
+      Math.min(Math.max(value, min), max);
+
+    function animate() {
+      if (reducedMotion.matches) return;
+
+      const rect = section.getBoundingClientRect();
+      const distance = section.offsetHeight - window.innerHeight;
+      const progress = clamp(-rect.top / Math.max(distance, 1), 0, 1);
+
+      const fadeOut = clamp((progress - 0.15) / 0.3, 0, 1);
+      const fadeIn = clamp((progress - 0.48) / 0.3, 0, 1);
+
+      statement.style.opacity = 1 - fadeOut;
+      statement.style.transform =
+        `translateY(${-fadeOut * 40}px)`;
+
+      identity.style.opacity = fadeIn;
+      identity.style.transform =
+        `translateY(${(1 - fadeIn) * 45}px)`;
+    }
+
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", animate);
+    animate();
+  </script>
+
 </body>
 </html>
