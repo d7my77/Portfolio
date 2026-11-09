@@ -310,6 +310,10 @@
          muted playsinline preload="auto">
     <source src="hero-03.mp4" type="video/mp4">
   </video>
+  <video class="hero-video" muted playsinline preload="auto">
+  <source src="hero-04.mp4" type="video/mp4">
+</video>
+ 
 </div>
       <div class="statement" id="statement">
   <div class="eyebrow">A CREATIVE POINT OF VIEW</div>
@@ -429,7 +433,7 @@ let currentHero = 0;
 let heroTimer = null;
 
 const heroFadeDuration = 700;
-const fallbackDurations = [4500, 4000, 1700];
+const fallbackDurations = [4500, 4000, 1700, 4000];
 
 function startHeroVideo(video) {
   video.pause();
