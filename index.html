@@ -269,7 +269,7 @@
 
 .hero-background .hero-video {
   opacity: 0;
-  transition: opacity 0.7s ease-in-out;
+ transition: opacity 1s ease-in-out;
 }
 
 .hero-background .hero-video.is-active {
@@ -434,7 +434,7 @@ const heroVideos = Array.from(
 let currentHero = 0;
 let heroTimer = null;
 
-const heroFadeDuration = 700;
+const heroFadeDuration = 1000;
 const fallbackDurations = [4500, 4000, 1700, 4000, 4000];
 
 function startHeroVideo(video) {
