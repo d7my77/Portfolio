@@ -448,6 +448,43 @@
   }
 }
 
+/* THE LIVING REEL — FINAL CARD REFINEMENTS */
+
+/* Make the film fill the entire cinematic frame */
+.work .project-visual img,
+.work .project-visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Give the project title more breathing room */
+.work .project-info {
+  bottom: 9%;
+}
+
+/* Keep project metadata comfortably inside the frame */
+.work .project-info p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Maintain a consistent cinematic format */
+.work .project-visual {
+  aspect-ratio: 16 / 8.5;
+}
+
+@media (max-width: 600px) {
+  .work .project-visual {
+    aspect-ratio: 4 / 5;
+  }
+
+  .work .project-info {
+    bottom: 9%;
+  }
+}
+
   </style>
 </head>
 
