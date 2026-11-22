@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Moving Canvas</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital@0;1&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #11110f;
+  color: #e9e3d9;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 6%;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+header span { color: #8c887f; }
+
+.intro {
+  padding: 110px 8% 70px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #aaa397;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(70px, 12vw, 180px);
+  font-weight: 400;
+  letter-spacing: -7px;
+  line-height: .95;
+  margin: 25px 0;
+}
+
+h1 em { color: #c4b39a; }
+
+.intro p {
+  color: #aaa397;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.canvas {
+  position: relative;
+  height: 1800px;
+  max-width: 1450px;
+  margin: auto;
+}
+
+.project {
+  position: absolute;
+  width: 39%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform: rotate(var(--angle));
+  transition: transform .6s ease;
+}
+
+.project:hover {
+  transform: rotate(0deg) scale(1.07);
+  z-index: 20 !important;
+}
+
+.project img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  filter: saturate(.75);
+  box-shadow: 0 25px 60px #0009;
+  transition: filter .5s;
+}
+
+.project:hover img {
+  filter: saturate(1.15);
+}
+
+.project .number {
+  display: block;
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 27px;
+}
+
+.project .caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 15px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.project .caption span { color: #aaa397; }
+
+.project:nth-child(1) {
+  top: 60px; left: 7%;
+  --angle: -5deg;
+  z-index: 2;
+}
+
+.project:nth-child(2) {
+  top: 280px; right: 5%;
+  width: 34%;
+  --angle: 6deg;
+  z-index: 3;
+}
+
+.project:nth-child(3) {
+  top: 650px; left: 4%;
+  width: 35%;
+  --angle: 4deg;
+  z-index: 4;
+}
+
+.project:nth-child(4) {
+  top: 780px; right: 6%;
+  --angle: -5deg;
+  z-index: 5;
+}
+
+.project:nth-child(5) {
+  top: 1210px; left: 9%;
+  --angle: -6deg;
+  z-index: 6;
+}
+
+.project:nth-child(6) {
+  top: 1350px; right: 6%;
+  width: 34%;
+  --angle: 5deg;
+  z-index: 7;
+}
+
+.art-text {
+  position: absolute;
+  top: 550px;
+  left: 38%;
+  font: italic 70px 'Playfair Display', serif;
+  color: #b8a88f;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #101311;
+  padding: 8%;
+  overflow-y: auto;
+}
+
+.overlay.active { display: block; }
+
+.close {
+  position: fixed;
+  top: 30px;
+  right: 35px;
+  background: #e9e3d9;
+  border: 0;
+  padding: 13px 20px;
+  cursor: pointer;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6%;
+  align-items: center;
+  min-height: 75vh;
+}
+
+.feature h2 {
+  font: 400 clamp(48px, 6vw, 95px)
+    'Playfair Display', serif;
+}
+
+.feature img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.feature a {
+  color: #e9e3d9;
+  display: inline-block;
+  margin-top: 25px;
+}
+
+@media(max-width: 700px) {
+  header { padding: 25px 5%; }
+  .intro { padding: 100px 6% 30px; }
+  h1 { letter-spacing: -3px; }
+
+  .canvas {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px 15px;
+    padding: 60px 5%;
+  }
+
+  .project:nth-child(n) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+  }
+
+  .project:nth-child(even) {
+    margin-top: 90px;
+  }
+
+  .art-text { display: none; }
+  .feature { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>ABDULRAHMAN ALYAHYA<br>
+    <span>ASSOCIATE CREATIVE DIRECTOR</span>
+  </div>
+  <div>SELECTED WORK / 2026</div>
+</header>
+
+<section class="intro">
+  <div class="eyebrow">
+    AN EXPERIMENTAL COLLECTION OF IDEAS
+  </div>
+
+  <h1>The Moving<br><em>Canvas.</em></h1>
+
+  <p>
+    Six stories. Six different worlds.<br>
+    One restless imagination.
+  </p>
+</section>
+
+<main class="canvas" id="canvas"></main>
+
+<div class="overlay" id="overlay">
+  <button class="close" onclick="closeProject()">
+    CLOSE ✕
+  </button>
+
+  <div class="feature">
+    <div>
+      <div class="eyebrow" id="projectNumber"></div>
+      <h2 id="projectTitle"></h2>
+      <p id="projectClient"></p>
+      <a id="projectVideo" target="_blank"
+         rel="noopener">WATCH THE FILM ↗</a>
+    </div>
+
+    <img id="projectImage" alt="">
+  </div>
+</div>
+
+<script>
+const projects = [
+  {
+    title: "Beyond the Frame.",
+    client: "Saudi Film Commission",
+    image: "film-commission-cover.jpg",
+    video: "film-commission-motion.mp4"
+  },
+  {
+    title: "Elevating Quality of Life.",
+    client: "Quality of Life Program",
+    image: "qol-cover.png",
+    video: "qol-motion.mp4"
+  },
+  {
+    title: "National Day.",
+    client: "ZATCA",
+    image: "zatca-cover.png",
+    video: "zatca-national-day.mp4"
+  },
+  {
+    title: "EXEED.",
+    client: "EXEED Alghanim",
+    image: "exeed-cover.png",
+    video: "exeed-alghanim.mp4"
+  },
+  {
+    title: "Building What's Next.",
+    client: "ZATCA — Binaa Al-Kafaat",
+    image: "zatca-binaa-cover.png",
+    video: "zatca-binaa-alkafaat.mp4"
+  },
+  {
+    title: "Beyond the Pages.",
+    client: "Kuwait International Book Fair",
+    image: "kuwait-book-fair-cover.png",
+    video: "kuwait-book-fair.mp4"
+  }
+];
+
+const canvas = document.getElementById("canvas");
+
+projects.forEach((project, index) => {
+  const card = document.createElement("button");
+  card.className = "project";
+
+  card.innerHTML = `
+    <span class="number">
+      ${String(index + 1).padStart(2, "0")}
+    </span>
+    <img src="${project.image}" alt="${project.client}">
+    <div class="caption">
+      <strong>${project.client}</strong>
+      <span>EXPLORE ↗</span>
+    </div>
+  `;
+
+  card.onclick = () => openProject(index);
+  canvas.appendChild(card);
+});
+
+function openProject(index) {
+  const p = projects[index];
+
+  document.getElementById("projectNumber").textContent =
+    String(index + 1).padStart(2, "0") + " / SELECTED WORK";
+
+  document.getElementById("projectTitle").textContent =
+    p.title;
+
+  document.getElementById("projectClient").textContent =
+    p.client;
+
+  document.getElementById("projectImage").src =
+    p.image;
+
+  document.getElementById("projectVideo").href =
+    p.video;
+
+  document.getElementById("overlay")
+    .classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+function closeProject() {
+  document.getElementById("overlay")
+    .classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeProject();
+});
+</script>
+
+</body>
+</html>
