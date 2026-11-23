@@ -1242,7 +1242,36 @@ if ("IntersectionObserver" in window) {
     card.classList.add("is-visible");
   });
 }
+// CINEMATIC CHAPTER 01 — SCROLL MOTION
 
+const chapterIntro = document.querySelector(".chapter-intro");
+const chapterNumber = document.querySelector(".chapter-number");
+
+function animateChapter() {
+  if (!chapterIntro || !chapterNumber) return;
+  if (reducedMotion.matches) return;
+
+  const rect = chapterIntro.getBoundingClientRect();
+  const viewport = window.innerHeight;
+
+  const progress = clamp(
+    (viewport - rect.top) / (viewport + rect.height),
+    0,
+    1
+  );
+
+  const reveal = clamp(progress / 0.45, 0, 1);
+  const fade = clamp((progress - 0.65) / 0.35, 0, 1);
+
+  chapterNumber.style.opacity = reveal * (1 - fade);
+  chapterNumber.style.transform =
+    `translateY(${120 - progress * 200}px)`;
+}
+
+window.addEventListener("scroll", animateChapter, { passive: true });
+window.addEventListener("resize", animateChapter);
+animateChapter();
+    
   </script>
 
 </body>
