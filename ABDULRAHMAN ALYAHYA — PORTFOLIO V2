@@ -1,1 +1,1159 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0c0e">
+  <meta name="description" content="The creative portfolio of Abdulrahman Alyahya, Associate Creative Director.">
+  <title>Abdulrahman Alyahya — Associate Creative Director</title>
+
+  <style>
+    :root {
+      --bg: #0b0c0e;
+      --white: #f3f2ef;
+      --muted: #888b92;
+      --line: #303238;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 6%;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    .cinematic {
+      height: 230vh;
+      position: relative;
+    }
+
+    .stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      padding: 7%;
+    }
+
+    .scene {
+      position: absolute;
+      width: 86%;
+      max-width: 1250px;
+      will-change: opacity, transform;
+    }
+
+    .statement {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .identity {
+      opacity: 0;
+      transform: translateY(45px);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: clamp(45px, 7.5vw, 118px);
+      line-height: 1.06;
+      letter-spacing: -0.055em;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    h1 span { color: var(--muted); }
+
+    .identity h1 {
+      font-size: clamp(48px, 8vw, 125px);
+      text-transform: uppercase;
+    }
+
+    .role {
+      margin-top: 35px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #a7a9af;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 38px;
+      left: 7%;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    .work {
+      min-height: 85vh;
+      padding: 140px 7%;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .work h2 {
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      margin: 55px 0;
+    }
+
+    .work p {
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 24px 7%; font-size: 9px; }
+      .eyebrow { font-size: 9px; }
+      .role { font-size: 10px; line-height: 1.8; }
+      .cinematic { height: 200vh; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cinematic { height: auto; }
+      .stage { position: relative; min-height: 100svh; }
+      .statement { display: none; }
+      .identity {
+        position: relative;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+    
+/* SELECTED WORK — PROJECT CARD */
+
+.project-card {
+  display: block;
+  margin-top: 64px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #17191c;
+}
+
+.project-visual img,
+.project-visual video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-visual img {
+  transition: transform 0.8s ease;
+}
+
+.project-visual video {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-card:hover .project-visual video {
+  opacity: 1;
+}
+
+.project-card:hover .project-visual img {
+  transform: scale(1.035);
+}
+
+.project-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+}
+
+.project-number {
+  color: #858585;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.project-info h3 {
+  margin: 12px 0 8px;
+  font-size: clamp(26px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: -1px;
+}
+
+.project-info p {
+  margin: 0;
+  color: #999;
+  font-size: 13px;
+}
+
+.project-arrow {
+  font-size: 30px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-arrow {
+  transform: translate(5px, -5px);
+}
+  /* Cinematic hero background */
+.stage {
+  isolation: isolate;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-background video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.42);
+}
+
+.hero-background .hero-video {
+  opacity: 0;
+ transition: opacity 1s ease-in-out;
+}
+
+.hero-background .hero-video.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background video {
+    display: none;
+  }
+}
+
+    
+/* THE LIVING REEL — SECTION DESIGN */
+
+.work {
+  position: relative;
+  padding: 130px 7% 150px;
+  background: #0b0c0e;
+  overflow: hidden;
+}
+
+.work .section-label {
+  color: #aaa7a2;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.work h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 8vw, 116px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  margin: 25px 0 20px;
+}
+
+.work h2 em {
+  font-weight: 400;
+}
+
+.work > p {
+  max-width: 460px;
+  color: #a5a4a2;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 75px;
+}
+
+@media (max-width: 600px) {
+  .work {
+    padding: 85px 6% 100px;
+  }
+
+  .work > p {
+    margin-bottom: 45px;
+  }
+}
+
+/* THE LIVING REEL — CINEMATIC PROJECTS */
+
+.work .project-card {
+  position: relative;
+  display: block;
+  margin-top: 36px;
+  overflow: hidden;
+  background: #151515;
+  color: #fff;
+  text-decoration: none;
+}
+
+.work .project-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 8.5;
+  overflow: hidden;
+}
+
+.work .project-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.3) 38%,
+    transparent 70%
+  );
+}
+
+.work .project-visual img,
+.work .project-visual video {
+  transition: transform 1.2s ease, opacity 0.6s ease;
+}
+
+.work .project-card:hover .project-visual img,
+.work .project-card:hover .project-visual video {
+  transform: scale(1.04);
+}
+
+.work .project-info {
+  position: absolute;
+  z-index: 2;
+  left: 5%;
+  right: 5%;
+  bottom: 6%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.work .project-number {
+  color: #ddd;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.work .project-info h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 16px 0 12px;
+}
+
+.work .project-info p {
+  color: #ddd;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.work .project-arrow {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .work .project-visual {
+    aspect-ratio: 4 / 5;
+  }
+
+  .work .project-info {
+    bottom: 7%;
+  }
+
+  .work .project-info h3 {
+    font-size: 36px;
+  }
+}
+
+/* SCROLL REVEAL */
+
+.work .project-card {
+  opacity: 0;
+  transform: translateY(55px);
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.work .project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work .project-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* THE LIVING REEL — FINAL CARD REFINEMENTS */
+
+/* Make the film fill the entire cinematic frame */
+.work .project-visual img,
+.work .project-visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Give the project title more breathing room */
+.work .project-info {
+  bottom: 9%;
+}
+
+/* Keep project metadata comfortably inside the frame */
+.work .project-info p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Maintain a consistent cinematic format */
+.work .project-visual {
+  aspect-ratio: 16 / 8.5;
+}
+
+@media (max-width: 600px) {
+  .work .project-visual {
+    aspect-ratio: 4 / 5;
+  }
+
+  .work .project-info {
+    bottom: 9%;
+  }
+}
+
+/* HERO IDENTITY — THREE BALANCED LINES */
+
+.identity {
+  width: min(100%, 460px);
+  text-align: center;
+}
+
+.identity .eyebrow,
+.identity h2,
+.identity p {
+  width: 100%;
+  margin: 0;
+}
+
+.identity .eyebrow {
+  font-size: 11px;
+  letter-spacing: 2.3px;
+  white-space: nowrap;
+}
+
+.identity h2 {
+  margin-top: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.7px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.identity p {
+  margin-top: 18px;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  color: #c4c4c4;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .identity {
+    width: 100%;
+  }
+
+  .identity .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .identity h2 {
+    font-size: clamp(17px, 5vw, 24px);
+    letter-spacing: -0.8px;
+  }
+
+  .identity p {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div>ABDULRAHMAN ALYAHYA</div>
+    <div>PORTFOLIO / 2026</div>
+  </nav>
+
+  <section class="cinematic" id="cinematic">
+    
+    <div class="stage">
+<div class="hero-background">
+  <video class="hero-video hero-video-1 is-active"
+         muted playsinline preload="auto">
+    <source src="hero-01.mp4" type="video/mp4">
+  </video>
+
+  <video class="hero-video hero-video-2"
+         muted playsinline preload="auto">
+    <source src="hero-02.mp4" type="video/mp4">
+  </video>
+
+  <video class="hero-video hero-video-3"
+         muted playsinline preload="auto">
+    <source src="hero-03.mp4" type="video/mp4">
+  </video>
+  <video class="hero-video" muted playsinline preload="auto">
+  <source src="hero-04.mp4" type="video/mp4">
+</video>
+ <video class="hero-video" muted playsinline preload="auto">
+  <source src="hero-05.mp4" type="video/mp4">
+</video>
+</div>
+      <div class="statement" id="statement">
+  <div class="eyebrow">A CREATIVE POINT OF VIEW</div>
+  <h1>Ideas are everywhere.<br>Meaning isn't.</h1>
+  <div class="scroll-hint">SCROLL TO DISCOVER ↓</div>
+</div>
+
+<div class="identity" id="identity">
+  <div class="eyebrow">THE PERSON BEHIND THE IDEAS</div>
+  <h2>ABDULRAHMAN ALYAHYA</h2>
+  <p>Associate Creative Director</p>
+</div>
+
+</div>
+  </section>
+
+<section class="work" id="work">
+  <div class="section-label">SELECTED WORK</div>
+
+  <h2>The <em>Living Reel.</em></h2>
+
+  <p>
+    Ideas. Campaigns. Films.
+    A curated collection of stories brought to life
+    through creative thinking and cinematic storytelling.
+  </p>
+    
+<a class="project-card"
+   href="https://www.youtube.com/watch?v=GUAH5Oz_SGg"
+   target="_blank"
+   rel="noopener noreferrer">
+
+  <div class="project-visual">
+    <img
+      src="film-commission-cover.png"
+      alt="Saudi Film Commission — Founding Day"
+    >
+
+    <video
+      src="film-commission-motion.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">01 / SELECTED WORK</span>
+      <h3>Beyond the Frame.</h3>
+      <p>Saudi Film Commission — Founding Day</p>
+    </div>
+    <span class="project-arrow">↗</span>
+  </div>
+</a>
+
+<!-- PROJECT 02 — QUALITY OF LIFE -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Quality of Life Program — Elevating Quality of Life">
+
+  <div class="project-visual">
+    
+<img
+  src="qol-cover.png"
+  alt="Quality of Life Program — National Campaign"
+>
+
+    <video
+      src="qol-motion.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="qol-cover.jpg"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        02 / SELECTED WORK
+      </span>
+
+      <h3>Elevating Quality of Life.</h3>
+
+      <p>
+        Quality of Life Program — National Campaign
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+<!-- PROJECT 03 — ZATCA NATIONAL DAY -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="ZATCA — National Day Campaign">
+
+  <div class="project-visual">
+    
+<img
+  src="zatca-cover.png"
+  alt="ZATCA — National Day Campaign"
+>
+
+    <video
+      src="zatca-national-day.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        03 / SELECTED WORK
+      </span>
+
+<h3>Pride in Every Detail.</h3>
+
+      <p>
+        ZATCA — National Day Campaign
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+<!-- PROJECT 04 — EXEED ALGHANIM -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="EXEED Alghanim — Automotive Campaign">
+
+  <div class="project-visual">
+    
+ <img
+    src="exeed-cover.png"
+    alt="EXEED Alghanim — Automotive Campaign"
+  >
+    
+    <video
+      src="exeed-alghanim.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        04 / SELECTED WORK
+      </span>
+
+      <h3>EXEED.</h3>
+
+      <p>
+        EXEED Alghanim — Automotive Campaign, Kuwait
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+<!-- PROJECT 05 — ZATCA BINAA ALKAFAAT -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="ZATCA — Binaa Al-Kafaat Program">
+
+  <div class="project-visual">
+
+     <img
+    src="zatca-binaa-cover.png"
+    alt="ZATCA — Binaa Al-Kafaat Program"
+  >
+    
+    <video
+      src="zatca-binaa-alkafaat.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        05 / SELECTED WORK
+      </span>
+
+      <h3>Building What's Next.</h3>
+
+      <p>
+        ZATCA — Binaa Al-Kafaat Program
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+  
+<!-- PROJECT 06 — KUWAIT BOOK FAIR -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Kuwait International Book Fair">
+
+  <div class="project-visual">
+
+     <img
+    src="kuwait-book-fair-cover.png"
+    alt="Kuwait International Book Fair"
+  >
+    
+    <video
+      src="kuwait-book-fair.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        06 / SELECTED WORK
+      </span>
+      
+<h3>There's a Book for Your Passion.</h3>
+
+      <p>
+        Kuwait International Book Fair — Cultural Campaign
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+  
+<!-- PROJECT 07 — UNAIZAH DATES SEASON -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Unaizah International Dates Season">
+
+  <div class="project-visual">
+
+    <img
+      src="unaizah-dates-season-cover.png"
+      alt="Unaizah International Dates Season"
+    >
+
+    <video
+      src="unaizah-dates-season.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        07 / SELECTED WORK
+      </span>
+
+      <h3>The Finest of Unaizah.</h3>
+
+      <p>
+        Unaizah International Dates Season
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+  
+<!-- PROJECT 08 — MINISTRY OF CULTURE -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Ministry of Culture — Founding Day">
+
+  <div class="project-visual">
+
+    <img
+      src="moc-founding-day-cover.png"
+      alt="Ministry of Culture — Founding Day"
+    >
+
+    <video
+      src="moc-founding-day.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        08 / SELECTED WORK
+      </span>
+
+      <h3>Writers of Glory.</h3>
+
+      <p>
+        Ministry of Culture — Founding Day
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+<!-- PROJECT 09 — ABSHER PLATFORM -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Absher Platform Campaign">
+
+  <div class="project-visual">
+
+    <img
+      src="absher-cover.png"
+      alt="Absher Platform Campaign"
+    >
+
+    <video
+      src="absher-campaign.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        09 / SELECTED WORK
+      </span>
+
+      <h3>Your Identity, Your Pride.</h3>
+
+      <p>
+        Absher Platform — Digital Government Campaign
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+<!-- PROJECT 10 — SPORTS BOULEVARD NATIONAL DAY -->
+
+<a class="project-card"
+   href="#work"
+   aria-label="Sports Boulevard — National Day Campaign">
+
+  <div class="project-visual">
+
+    <img
+      src="sports-boulevard-national-day-cover.png"
+      alt="Sports Boulevard — A Nation Growing Within Us"
+    >
+
+    <video
+      src="sports-boulevard-national-day.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+      <span class="project-number">
+        10 / SELECTED WORK
+      </span>
+
+      <h3>A Nation Growing Within Us.</h3>
+
+      <p>
+        Sports Boulevard — Saudi National Day
+      </p>
+    </div>
+
+    <span class="project-arrow">↗</span>
+  </div>
+
+</a>
+
+  </section>
+  
+  <footer>
+    © 2026 ABDULRAHMAN ALYAHYA
+  </footer>
+
+  <script>
+    const section = document.getElementById("cinematic");
+    const statement = document.getElementById("statement");
+    const identity = document.getElementById("identity");
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    const clamp = (value, min, max) =>
+      Math.min(Math.max(value, min), max);
+
+    function animate() {
+      if (reducedMotion.matches) return;
+
+      const rect = section.getBoundingClientRect();
+      const distance = section.offsetHeight - window.innerHeight;
+      const progress = clamp(-rect.top / Math.max(distance, 1), 0, 1);
+
+      const fadeOut = clamp((progress - 0.15) / 0.3, 0, 1);
+      const fadeIn = clamp((progress - 0.48) / 0.3, 0, 1);
+
+      statement.style.opacity = 1 - fadeOut;
+      statement.style.transform =
+        `translateY(${-fadeOut * 40}px)`;
+
+      identity.style.opacity = fadeIn;
+      identity.style.transform =
+        `translateY(${(1 - fadeIn) * 45}px)`;
+    }
+
+    window.addEventListener("scroll", animate, { passive: true });
+    window.addEventListener("resize", animate);
+    animate();
+    
+document.querySelectorAll(".project-card").forEach(card => {
+  const video = card.querySelector("video");
+
+  if (!video) return;
+
+  card.addEventListener("mouseenter", () => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
+  card.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+});
+   // Cinematic hero video sequence
+const heroVideos = Array.from(
+  document.querySelectorAll(".hero-background .hero-video")
+);
+
+let currentHero = 0;
+let heroTimer = null;
+
+const heroFadeDuration = 700;
+const fallbackDurations = [4500, 4000, 1700, 4000, 4000];
+
+function startHeroVideo(video) {
+  video.pause();
+  video.currentTime = 0;
+  video.muted = true;
+
+  const promise = video.play();
+  if (promise) promise.catch(console.warn);
+}
+
+function showNextHero() {
+  if (heroVideos.length < 2) return;
+
+  const outgoing = heroVideos[currentHero];
+  const nextIndex = (currentHero + 1) % heroVideos.length;
+  const incoming = heroVideos[nextIndex];
+
+  startHeroVideo(incoming);
+
+  incoming.classList.add("is-active");
+  outgoing.classList.remove("is-active");
+
+  currentHero = nextIndex;
+
+  setTimeout(() => {
+    outgoing.pause();
+    outgoing.currentTime = 0;
+  }, heroFadeDuration);
+
+  scheduleHero();
+}
+
+function scheduleHero() {
+  clearTimeout(heroTimer);
+
+  const video = heroVideos[currentHero];
+  const duration = Number.isFinite(video.duration) && video.duration > 0
+    ? video.duration * 1000
+    : fallbackDurations[currentHero] || 4000;
+
+  const wait = Math.max(1000, duration - heroFadeDuration);
+
+  heroTimer = setTimeout(showNextHero, wait);
+}
+
+if (heroVideos.length) {
+  heroVideos.forEach(video => {
+    video.muted = true;
+    video.playsInline = true;
+  });
+
+  startHeroVideo(heroVideos[0]);
+  scheduleHero();
+}
+    
+// THE LIVING REEL — SCROLL REVEAL
+
+const reelCards = document.querySelectorAll(
+  ".work .project-card"
+);
+
+if ("IntersectionObserver" in window) {
+  const reelObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  reelCards.forEach(card => reelObserver.observe(card));
+} else {
+  reelCards.forEach(card => {
+    card.classList.add("is-visible");
+  });
+}
+
+  </script>
+
+</body>
+</html>
