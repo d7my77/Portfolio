@@ -44,7 +44,7 @@
     }
 
     .cinematic {
-      height: 230vh;
+      height: 100svh;
       position: relative;
     }
 
@@ -152,7 +152,7 @@
       nav { padding: 24px 7%; font-size: 9px; }
       .eyebrow { font-size: 9px; }
       .role { font-size: 10px; line-height: 1.8; }
-      .cinematic { height: 200vh; }
+      .cinematic { height: 100svh; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -659,6 +659,87 @@
     display: none;
   }
 }
+    /* HERO — COMBINED OPENING */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(86%, 1100px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.hero-message h1 {
+  font-size: clamp(42px, 6.5vw, 100px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+
+.hero-message h1 span {
+  color: #b4b4b4;
+}
+
+.hero-divider {
+  width: 70px;
+  height: 1px;
+  background: rgba(255,255,255,0.5);
+  margin: 44px 0 34px;
+}
+
+.hero-person .eyebrow {
+  margin-bottom: 12px;
+}
+
+.hero-person h2 {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(20px, 2.3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.hero-person p {
+  margin: 12px 0 0;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #c4c4c4;
+}
+
+.hero-scroll {
+  margin-top: 48px;
+  color: #aaa;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 600px) {
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-message h1 {
+    font-size: clamp(38px, 10vw, 60px);
+  }
+
+  .hero-divider {
+    margin: 30px 0 25px;
+  }
+
+  .hero-person h2 {
+    font-size: clamp(19px, 5vw, 25px);
+  }
+
+  .hero-person p {
+    font-size: 11px;
+  }
+
+  .hero-scroll {
+    margin-top: 35px;
+  }
+}
     
   </style>
 </head>
@@ -695,16 +776,23 @@
   <source src="hero-05.mp4" type="video/mp4">
 </video>
 </div>
-      <div class="statement" id="statement">
-  <div class="eyebrow">A CREATIVE POINT OF VIEW</div>
-  <h1>Ideas are everywhere.<br>Meaning isn't.</h1>
-  <div class="scroll-hint">SCROLL TO DISCOVER ↓</div>
-</div>
+   <div class="hero-content" id="hero-content">
 
-<div class="identity" id="identity">
-  <div class="eyebrow">THE PERSON BEHIND THE IDEAS</div>
-  <h2>ABDULRAHMAN ALYAHYA</h2>
-  <p>Associate Creative Director</p>
+  <div class="hero-message">
+    <div class="eyebrow">A CREATIVE POINT OF VIEW</div>
+    <h1>Ideas are everywhere.<br><span>Meaning isn't.</span></h1>
+  </div>
+
+  <div class="hero-divider"></div>
+
+  <div class="hero-person">
+    <div class="eyebrow">THE PERSON BEHIND THE IDEAS</div>
+    <h2>ABDULRAHMAN ALYAHYA</h2>
+    <p>Associate Creative Director</p>
+  </div>
+
+  <div class="hero-scroll">SCROLL TO DISCOVER ↓</div>
+</div>
 </div>
 
 </div>
@@ -1145,38 +1233,6 @@
   </footer>
 
   <script>
-    const section = document.getElementById("cinematic");
-    const statement = document.getElementById("statement");
-    const identity = document.getElementById("identity");
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-
-    const clamp = (value, min, max) =>
-      Math.min(Math.max(value, min), max);
-
-    function animate() {
-      if (reducedMotion.matches) return;
-
-      const rect = section.getBoundingClientRect();
-      const distance = section.offsetHeight - window.innerHeight;
-      const progress = clamp(-rect.top / Math.max(distance, 1), 0, 1);
-
-      const fadeOut = clamp((progress - 0.15) / 0.3, 0, 1);
-      const fadeIn = clamp((progress - 0.48) / 0.3, 0, 1);
-
-      statement.style.opacity = 1 - fadeOut;
-      statement.style.transform =
-        `translateY(${-fadeOut * 40}px)`;
-
-      identity.style.opacity = fadeIn;
-      identity.style.transform =
-        `translateY(${(1 - fadeIn) * 45}px)`;
-    }
-
-    window.addEventListener("scroll", animate, { passive: true });
-    window.addEventListener("resize", animate);
-    animate();
     
 document.querySelectorAll(".project-card").forEach(card => {
   const video = card.querySelector("video");
