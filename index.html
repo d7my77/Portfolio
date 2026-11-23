@@ -543,7 +543,61 @@
     letter-spacing: 0.5px;
   }
 }
+/* CINEMATIC MOTION MARQUEE */
 
+.motion-marquee {
+  position: relative;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #0b0c0e;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marqueeMove 28s linear infinite;
+}
+
+.marquee-track span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(85px, 11vw, 180px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.32);
+}
+
+@keyframes marqueeMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-40%);
+  }
+}
+
+@media (max-width: 600px) {
+  .motion-marquee {
+    height: 110px;
+  }
+
+  .marquee-track span {
+    font-size: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+    
   </style>
 </head>
 
@@ -594,6 +648,13 @@
 </div>
   </section>
 
+  <!-- CINEMATIC MOTION MARQUEE -->
+<div class="motion-marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>IDEAS INTO IMPACT — IDEAS INTO IMPACT —</span>
+  </div>
+</div>
+  
 <section class="work" id="work">
   <div class="section-label">SELECTED WORK</div>
 
