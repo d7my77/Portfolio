@@ -1227,6 +1227,118 @@
 
 }
 
+/* CINEMATIC FILM PLAYER */
+
+.film-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.film-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.film-lightbox-inner {
+  width: 100%;
+  max-width: 1200px;
+  transform: translateY(25px) scale(0.96);
+  transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.film-lightbox.active .film-lightbox-inner {
+  transform: translateY(0) scale(1);
+}
+
+.film-lightbox-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.film-now-showing {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #b9aa98;
+}
+
+.film-close {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  background: transparent;
+  color: #eee8df;
+  font-size: 26px;
+  cursor: pointer;
+  transition: background .3s ease;
+}
+
+.film-close:hover {
+  background: rgba(255,255,255,.15);
+}
+
+.film-screen {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 72vh;
+  background: #000;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 0 100px rgba(255,255,255,.05);
+}
+
+.film-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.film-lightbox-title {
+  margin: 20px 0 6px;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(24px, 4vw, 42px);
+  color: #f0e9df;
+}
+
+.film-lightbox-client {
+  color: #b9aa98;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .film-lightbox {
+    padding: 5%;
+  }
+
+  .film-now-showing {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .film-lightbox-client {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+}
+
   </style>
 </head>
 
@@ -1307,7 +1419,7 @@
 <section class="work" id="work">
     
 <a class="project-card"
-   href="https://www.youtube.com/watch?v=GUAH5Oz_SGg"
+   href="https://youtu.be/-zwL_2TlObs"
    target="_blank"
    rel="noopener noreferrer">
 
@@ -1756,6 +1868,48 @@
     © 2026 ABDULRAHMAN ALYAHYA
   </footer>
 
+<!-- CINEMATIC FILM PLAYER -->
+
+<div class="film-lightbox"
+     id="film-lightbox"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Film player"
+     aria-hidden="true"
+     inert>
+
+  <div class="film-lightbox-inner">
+
+    <div class="film-lightbox-top">
+
+      <span class="film-now-showing">
+        THE LIVING REEL / NOW SHOWING
+      </span>
+
+      <button class="film-close"
+              id="film-close"
+              aria-label="Close film">
+        ×
+      </button>
+
+    </div>
+
+    <div class="film-screen"
+         id="film-screen">
+    </div>
+
+    <h2 class="film-lightbox-title"
+        id="film-lightbox-title">
+    </h2>
+
+    <p class="film-lightbox-client"
+       id="film-lightbox-client">
+    </p>
+
+  </div>
+
+</div>
+
   <script>
     
 document.querySelectorAll(".project-card").forEach(card => {
@@ -1991,6 +2145,92 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
   }
 
 });
+
+// CINEMATIC FILM PLAYER
+
+(() => {
+  const lightbox = document.getElementById("film-lightbox");
+  const screen = document.getElementById("film-screen");
+  const closeButton = document.getElementById("film-close");
+  const title = document.getElementById("film-lightbox-title");
+  const client = document.getElementById("film-lightbox-client");
+
+  const firstProject = document.querySelector(".work .project-card");
+
+  let previousOverflow = "";
+  let previousFocus = null;
+
+  function openFilm(videoId, filmTitle, filmClient) {
+
+    previousFocus = document.activeElement;
+    previousOverflow = document.body.style.overflow;
+
+    title.textContent = filmTitle;
+    client.textContent = filmClient;
+
+    screen.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&playsinline=1"
+        title="${filmTitle}"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    `;
+
+    document.querySelectorAll(".work video").forEach(video => {
+      video.pause();
+    });
+
+    document.body.style.overflow = "hidden";
+
+    lightbox.inert = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    lightbox.classList.add("active");
+    closeButton.focus();
+  }
+
+  function closeFilm() {
+
+    if (!lightbox.classList.contains("active")) return;
+
+    lightbox.classList.remove("active");
+
+    screen.innerHTML = "";
+
+    document.body.style.overflow = previousOverflow;
+
+    if (previousFocus) previousFocus.focus({ preventScroll: true });
+
+    lightbox.inert = true;
+    lightbox.setAttribute("aria-hidden", "true");
+  }
+
+  if (firstProject) {
+    firstProject.addEventListener("click", event => {
+
+      event.preventDefault();
+
+      openFilm(
+        "-zwL_2TlObs",
+        "Beyond the Frame.",
+        "Saudi Film Commission"
+      );
+
+    });
+  }
+
+  closeButton.addEventListener("click", closeFilm);
+
+  lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) closeFilm();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeFilm();
+  });
+
+})();
 
   </script>
 
