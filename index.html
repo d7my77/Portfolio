@@ -1451,7 +1451,7 @@
 <!-- PROJECT 02 — QUALITY OF LIFE -->
 
 <a class="project-card"
-   href="#work"
+   href="https://www.youtube.com/watch?v=PZET_fIiT-g"
    aria-label="Quality of Life Program — Elevating Quality of Life">
 
   <div class="project-visual">
@@ -2206,19 +2206,40 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
     lightbox.setAttribute("aria-hidden", "true");
   }
 
-  if (firstProject) {
-    firstProject.addEventListener("click", event => {
+  
+const films = {
+  1: {
+    id: "-zwL_2TlObs",
+    title: "Beyond the Frame.",
+    client: "Saudi Film Commission"
+  },
 
-      event.preventDefault();
-
-      openFilm(
-        "-zwL_2TlObs",
-        "Beyond the Frame.",
-        "Saudi Film Commission"
-      );
-
-    });
+  2: {
+    id: "PZET_fIiT-g",
+    title: "Elevating Quality of Life.",
+    client: "Quality of Life Program"
   }
+};
+
+document.querySelectorAll(".work .project-card").forEach((card, index) => {
+
+  const film = films[index + 1];
+
+  if (!film) return;
+
+  card.addEventListener("click", event => {
+
+    event.preventDefault();
+
+    openFilm(
+      film.id,
+      film.title,
+      film.client
+    );
+
+  });
+
+});
 
   closeButton.addEventListener("click", closeFilm);
 
