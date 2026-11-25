@@ -1478,6 +1478,58 @@
     max-width: 85%;
   }
 }
+  /* CHAPTER TWO — SCROLL REVEAL */
+
+.about-chapter.is-animated .about-chapter-number {
+  opacity: 0;
+  transform: translate(100px, -50%);
+  transition:
+    opacity 1.6s ease,
+    transform 1.8s cubic-bezier(.16, 1, .3, 1);
+}
+
+.about-chapter.is-animated .about-chapter-copy {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity 1.2s ease .2s,
+    transform 1.6s cubic-bezier(.16, 1, .3, 1) .2s;
+}
+
+.about-chapter.is-animated .about-chapter-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.5s ease .7s;
+}
+
+.about-chapter.is-visible .about-chapter-number {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.about-chapter.is-visible .about-chapter-copy {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-chapter.is-visible .about-chapter-line {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-chapter.is-animated .about-chapter-number {
+    opacity: 1;
+    transform: translateY(-50%);
+    transition: none;
+  }
+
+  .about-chapter.is-animated .about-chapter-copy,
+  .about-chapter.is-animated .about-chapter-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
     
   </style>
 </head>
@@ -2520,7 +2572,29 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
   });
 
 })();
+/* CHAPTER TWO — REVEAL OBSERVER */
 
+(() => {
+  const chapter = document.querySelector(".about-chapter");
+
+  if (!chapter || !("IntersectionObserver" in window)) return;
+
+  chapter.classList.add("is-animated");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  observer.observe(chapter);
+})();
+    
   </script>
 
 </body>
