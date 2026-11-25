@@ -2486,6 +2486,174 @@
   }
 
 }
+
+    /* CHAPTER THREE — WHAT'S NEXT */
+
+.contact-chapter {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 7%;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(
+    ellipse at 80% 45%,
+    #29241e 0%,
+    #141414 40%,
+    #0b0c0e 75%
+  );
+}
+
+.contact-chapter-number {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Arial, sans-serif;
+  font-size: clamp(220px, 49vw, 850px);
+  font-weight: 700;
+  line-height: .85;
+  letter-spacing: -.09em;
+  color: rgba(232,223,211,.09);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.contact-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(65px, 12vw, 190px);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.065em;
+  color: #f0e9df;
+  margin: 50px 0 80px;
+}
+
+.contact-title em {
+  display: block;
+  font-weight: 400;
+}
+
+.contact-title .contact-accent {
+  color: #b9aa98;
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5%;
+  border-top: 1px solid rgba(232,223,211,.3);
+  padding-top: 35px;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-decoration: none;
+  color: #f0e9df;
+  padding: 15px 0 25px;
+  border-bottom: 1px solid rgba(232,223,211,.18);
+  transition: border-color .4s ease;
+}
+
+.contact-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #b9aa98;
+}
+
+.contact-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.4vw, 36px);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  transition: color .4s ease;
+}
+
+.contact-action span {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: #b9aa98;
+  transition: transform .4s ease;
+}
+
+.contact-link:hover {
+  border-color: #b9aa98;
+}
+
+.contact-link:hover .contact-action {
+  color: #b9aa98;
+}
+
+.contact-link:hover .contact-action span {
+  transform: translate(5px, -5px);
+}
+
+.contact-link:focus-visible {
+  outline: 1px solid #b9aa98;
+  outline-offset: 6px;
+}
+
+@media (max-width: 600px) {
+
+  .contact-chapter {
+    min-height: 85vh;
+    padding: 80px 7%;
+  }
+
+  .contact-chapter-number {
+    font-size: 75vw;
+    right: 8%;
+    top: 35%;
+  }
+
+  .contact-title {
+    font-size: 15vw;
+    margin: 40px 0 50px;
+  }
+
+  .contact-links {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .contact-link {
+    gap: 10px;
+    padding: 10px 0 20px;
+  }
+
+  .contact-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .contact-action {
+    font-size: 25px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-link,
+  .contact-action,
+  .contact-action span {
+    transition: none;
+  }
+}
     
   </style>
 </head>
@@ -3407,6 +3575,72 @@
 
   <div class="awards-signature">
     MUSE CREATIVE AWARDS / SEPTEMBER 2025
+  </div>
+
+</section>
+
+  <!-- CHAPTER THREE — WHAT'S NEXT -->
+
+<section class="contact-chapter" id="contact">
+
+  <span class="contact-chapter-number" aria-hidden="true">
+    03
+  </span>
+
+  <div class="contact-content">
+
+    <div class="origin-label">
+      CHAPTER THREE / WHAT'S NEXT?
+    </div>
+
+    <h2 class="contact-title">
+      Let's make
+      <em>something</em>
+      <em class="contact-accent">matter.</em>
+    </h2>
+
+    <div class="contact-links">
+
+      <a class="contact-link"
+         href="mailto:abdulrahman.mohammed7766@gmail.com">
+
+        <span class="contact-label">EMAIL</span>
+
+        <span class="contact-action">
+          Get in touch
+          <span>↗</span>
+        </span>
+
+      </a>
+
+      <a class="contact-link"
+         href="tel:+966597979379">
+
+        <span class="contact-label">PHONE</span>
+
+        <span class="contact-action">
+          Give me a call
+          <span>↗</span>
+        </span>
+
+      </a>
+
+      <a class="contact-link"
+         href="https://www.linkedin.com/in/abdulrahman-alyahya-a40033192/"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <span class="contact-label">LINKEDIN</span>
+
+        <span class="contact-action">
+          Let's connect
+          <span>↗</span>
+        </span>
+
+      </a>
+
+    </div>
+
   </div>
 
 </section>
