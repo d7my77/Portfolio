@@ -3784,21 +3784,32 @@ footer {
 
   <script>
     
-document.querySelectorAll(".project-card").forEach(card => {
+// PROJECT MOTION — HOVER PLAYBACK
+
+document.querySelectorAll(".work .project-card").forEach(card => {
   const video = card.querySelector("video");
 
   if (!video) return;
 
+  video.muted = true;
+  video.playsInline = true;
+  video.loop = true;
+
   card.addEventListener("mouseenter", () => {
-    video.currentTime = 0;
-    video.play().catch(() => {});
+    if (document.querySelector(".film-lightbox.active")) return;
+
+    video.play().catch(error => {
+      if (error.name !== "AbortError") {
+        console.warn("Project motion:", error);
+      }
+    });
   });
 
   card.addEventListener("mouseleave", () => {
     video.pause();
-    video.currentTime = 0;
   });
 });
+    
    // Cinematic hero video sequence
 const heroVideos = Array.from(
   document.querySelectorAll(".hero-background .hero-video")
