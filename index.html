@@ -1921,6 +1921,81 @@
     font-size: 10px;
   }
 }
+
+    /* THE EVOLUTION — SCROLL REVEAL */
+
+.about-evolution.is-animated .career-row {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 1s ease,
+    transform 1.2s cubic-bezier(.16,1,.3,1),
+    padding .5s ease,
+    background .5s ease;
+}
+
+.about-evolution.is-animated .career-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-evolution.is-animated .career-current {
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 1.6s ease,
+    transform 1.8s cubic-bezier(.16,1,.3,1);
+}
+
+.about-evolution.is-animated .career-current.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-evolution.is-animated .career-current-year {
+  opacity: 0;
+  transform: translateX(60px);
+  transition:
+    opacity 1.5s ease .3s,
+    transform 1.8s cubic-bezier(.16,1,.3,1) .3s;
+}
+
+.about-evolution.is-animated
+.career-current.is-visible .career-current-year {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.career-present::before {
+  animation: careerPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes careerPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 12px #c7b69f;
+  }
+
+  50% {
+    opacity: .4;
+    box-shadow: 0 0 3px #c7b69f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-evolution.is-animated .career-row,
+  .about-evolution.is-animated .career-current,
+  .about-evolution.is-animated .career-current-year {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .career-present::before {
+    animation: none;
+  }
+}
     
   </style>
 </head>
@@ -3231,6 +3306,43 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
 
   [title, story, stats].forEach(element => {
     if (element) observer.observe(element);
+  });
+
+})();
+    /* THE EVOLUTION — REVEAL OBSERVER */
+
+(() => {
+
+  const evolution = document.querySelector(".about-evolution");
+
+  if (!evolution || !("IntersectionObserver" in window)) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const elements = evolution.querySelectorAll(
+    ".career-row, .career-current"
+  );
+
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("is-visible");
+
+      observer.unobserve(entry.target);
+
+    });
+
+  }, {
+    threshold: 0.15
+  });
+
+  evolution.classList.add("is-animated");
+
+  elements.forEach(element => {
+    observer.observe(element);
   });
 
 })();
