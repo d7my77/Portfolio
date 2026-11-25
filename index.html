@@ -2257,29 +2257,33 @@
 
 .awards-visual {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  justify-items: center;
+  gap: 5%;
+  padding: 60px 7% 30px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      ellipse at 27% 45%,
+      rgba(185,170,152,.10),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 73% 45%,
+      rgba(185,170,152,.10),
+      transparent 35%
+    );
 }
 
 .awards-visual img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: clamp(180px, 32vw, 440px);
+  max-width: 85%;
   object-fit: contain;
-}
-
-.awards-visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    #080809 0%,
-    transparent 15%,
-    transparent 85%,
-    #080809 100%
-  );
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,.6));
 }
 
 .awards-details {
@@ -3247,12 +3251,20 @@
   <div class="awards-gallery">
 
     <div class="awards-visual">
-      <img
-        src="muse-platinum.png"
-        alt="Illustration of two MUSE Creative Awards trophies"
-        loading="lazy"
-      >
-    </div>
+
+  <img
+    src="muse-platinum.png"
+    alt="MUSE Platinum Award"
+    loading="lazy"
+  >
+
+  <img
+    src="muse-platinum.png"
+    alt="MUSE Platinum Award"
+    loading="lazy"
+  >
+
+</div>
 
     <div class="awards-details">
 
