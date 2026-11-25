@@ -1134,7 +1134,7 @@
 /* Collection ending */
 
 .work::after {
-  content: "11 FILMS. ONE CREATIVE JOURNEY.";
+  content: "12 FILMS. ONE CREATIVE JOURNEY.";
   grid-column: 1 / -1;
   padding: 30px 0 0;
   font-size: 10px;
@@ -1337,6 +1337,44 @@
     font-size: 8px;
     letter-spacing: 1.5px;
   }
+}
+
+/* PROJECT 12 — YELO */
+
+.work .project-card:nth-of-type(12) {
+  grid-column: 1 / -1;
+  aspect-ratio: 3.15 / 1;
+}
+
+.work .project-card:nth-of-type(12) h3 {
+  font-size: clamp(36px, 5.8cqw, 90px);
+  max-width: 80%;
+  left: 5%;
+  bottom: 22%;
+}
+
+.work .project-card:nth-of-type(12) .project-number,
+.work .project-card:nth-of-type(12) .project-info p {
+  left: 5%;
+}
+
+@media (max-width: 600px) {
+
+  .work .project-card:nth-of-type(12) {
+    aspect-ratio: 4 / 3;
+  }
+
+  .work .project-card:nth-of-type(12) h3 {
+    font-size: clamp(24px, 8cqw, 42px);
+    left: 7%;
+    max-width: 86%;
+  }
+
+  .work .project-card:nth-of-type(12) .project-number,
+  .work .project-card:nth-of-type(12) .project-info p {
+    left: 7%;
+  }
+
 }
 
   </style>
@@ -1862,6 +1900,48 @@
 
 </a>
 
+<!-- PROJECT 12 — YELO -->
+
+<a class="project-card"
+   href="https://www.youtube.com/watch?v=nr_Dd-5IwTU"
+   aria-label="Yelo — 20th Anniversary">
+
+  <div class="project-visual">
+
+    <img
+      src="yelo-cover.png"
+      alt="Yelo — 20th Anniversary"
+    >
+
+    <video
+      src="yelo-motion.mp4"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+
+  </div>
+
+  <div class="project-info">
+    <div>
+
+      <span class="project-number">
+        12 / SELECTED WORK
+      </span>
+
+      <h3>20 Years.<br>And Miles to Go.</h3>
+
+      <p>Yelo — 20th Anniversary</p>
+
+    </div>
+
+    <span class="project-arrow">↗</span>
+
+  </div>
+
+</a>
+
   </section>
   
   <footer>
@@ -2272,6 +2352,12 @@ const films = {
     id: "GWvdmBxORS0",
     title: "Same Promise. Remarkable Progress.",
     client: "Liwan Real Estate Development — Livein Liwan"
+  },
+
+  12: {
+    id: "nr_Dd-5IwTU",
+    title: "20 Years. And Miles to Go.",
+    client: "Yelo — 20th Anniversary"
   }
 };
 
