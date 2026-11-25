@@ -1376,7 +1376,109 @@
   }
 
 }
+/* CHAPTER TWO — BEYOND THE WORK */
 
+.about-chapter {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 7%;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(
+    ellipse at 75% 40%,
+    #29241e 0%,
+    #141414 40%,
+    #0b0c0e 75%
+  );
+}
+
+.about-chapter-number {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Arial, sans-serif;
+  font-size: clamp(220px, 49vw, 850px);
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.09em;
+  color: rgba(232, 223, 211, 0.16);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-chapter-copy {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.about-chapter .section-label {
+  color: #b9b4ac;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 30px;
+}
+
+.about-chapter h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(52px, 8.5vw, 150px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: #f0e9df;
+  margin: 0 0 32px;
+}
+
+.about-chapter h2 em {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.about-chapter p {
+  max-width: 460px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #b9b4ac;
+  margin: 0;
+}
+
+.about-chapter-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(232, 223, 211, 0.3);
+  margin-top: 44px;
+}
+
+@media (max-width: 600px) {
+  .about-chapter {
+    min-height: 65vh;
+    padding: 80px 7%;
+  }
+
+  .about-chapter-number {
+    font-size: 70vw;
+    right: 8%;
+  }
+
+  .about-chapter h2 {
+    font-size: 12vw;
+  }
+
+  .about-chapter .section-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .about-chapter p {
+    font-size: 12px;
+    max-width: 85%;
+  }
+}
+    
   </style>
 </head>
 
@@ -1943,6 +2045,31 @@
 </a>
 
   </section>
+  <!-- CHAPTER TWO — BEYOND THE WORK -->
+
+<section class="about-chapter" id="about">
+
+  <span class="about-chapter-number"
+        aria-hidden="true">02</span>
+
+  <div class="about-chapter-copy">
+
+    <div class="section-label">
+      CHAPTER TWO / THE CREATIVE JOURNEY
+    </div>
+
+    <h2>Beyond <em>the Work.</em></h2>
+
+    <p>
+      The thinking behind the ideas.
+      The journey behind the work.
+    </p>
+
+    <div class="about-chapter-line"></div>
+
+  </div>
+
+</section>
   
   <footer>
     © 2026 ABDULRAHMAN ALYAHYA
