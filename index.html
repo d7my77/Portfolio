@@ -2529,7 +2529,7 @@
 
 .contact-title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(65px, 12vw, 190px);
+  font-size: clamp(58px, 10.8vw, 171px);
   font-weight: 400;
   line-height: .95;
   letter-spacing: -.065em;
@@ -2548,8 +2548,8 @@
 
 .contact-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 5%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 3%;
   border-top: 1px solid rgba(232,223,211,.3);
   padding-top: 35px;
 }
@@ -2577,7 +2577,7 @@
   align-items: center;
   gap: 10px;
   font-family: Georgia, serif;
-  font-size: clamp(18px, 2.4vw, 36px);
+  font-size: clamp(17px, 2vw, 30px);
   font-weight: 400;
   letter-spacing: -.035em;
   transition: color .4s ease;
@@ -2652,6 +2652,35 @@
   .contact-action,
   .contact-action span {
     transition: none;
+  }
+}
+
+    /* THE FINAL FOOTER */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.back-to-top {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #b9aa98;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+.back-to-top:hover {
+  color: #f0e9df;
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    font-size: 8px;
+    letter-spacing: 1px;
   }
 }
     
@@ -3639,6 +3668,20 @@
 
       </a>
 
+<a class="contact-link"
+   href="https://wa.me/966597979379"
+   target="_blank"
+   rel="noopener noreferrer">
+
+  <span class="contact-label">WHATSAPP</span>
+
+  <span class="contact-action">
+    Drop me a message
+    <span>↗</span>
+  </span>
+
+</a>
+      
     </div>
 
   </div>
@@ -3647,6 +3690,10 @@
   
   <footer>
     © 2026 ABDULRAHMAN ALYAHYA
+  <a class="back-to-top" href="#"
+   onclick="window.scrollTo({top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'}); return false;">
+  BACK TO TOP ↑
+</a>
   </footer>
 
 <!-- CINEMATIC FILM PLAYER -->
