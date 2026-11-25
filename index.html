@@ -4463,6 +4463,99 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
   observer.observe(gallery);
 
 })();
+  /* MOBILE — CINEMATIC AUTOPLAY */
+
+(() => {
+  const mobile = window.matchMedia(
+    "(max-width: 768px) and (hover: none) and (pointer: coarse)"
+  );
+
+  if (!mobile.matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const cards = Array.from(
+    document.querySelectorAll(".work .project-card")
+  );
+
+  let activeCard = null;
+
+  function stopPreview() {
+    if (!activeCard) return;
+
+    const video = activeCard.querySelector("video");
+    activeCard.classList.remove("is-mobile-playing");
+
+    if (video) video.pause();
+
+    activeCard = null;
+  }
+
+  function updatePreview() {
+    if (!mobile.matches ||
+        document.hidden ||
+        document.querySelector(".film-lightbox.active")) {
+      stopPreview();
+      return;
+    }
+
+    const center = window.innerHeight / 2;
+
+    const nextCard = cards.find(card => {
+      const rect = card.getBoundingClientRect();
+      return rect.top <= center && rect.bottom >= center;
+    });
+
+    if (nextCard === activeCard) return;
+
+    stopPreview();
+
+    if (!nextCard) return;
+
+    const video = nextCard.querySelector("video");
+    if (!video) return;
+
+    activeCard = nextCard;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+
+    video.play().then(() => {
+      if (activeCard === nextCard) {
+        nextCard.classList.add("is-mobile-playing");
+      }
+    }).catch(() => {
+      if (activeCard === nextCard) stopPreview();
+    });
+  }
+
+  let scheduled = false;
+
+  function schedulePreview() {
+    if (scheduled) return;
+    scheduled = true;
+
+    requestAnimationFrame(() => {
+      scheduled = false;
+      updatePreview();
+    });
+  }
+
+  window.addEventListener("scroll", schedulePreview, { passive: true });
+  window.addEventListener("resize", schedulePreview);
+  document.addEventListener("visibilitychange", schedulePreview);
+
+  const lightbox = document.querySelector(".film-lightbox");
+
+  if (lightbox) {
+    new MutationObserver(schedulePreview).observe(lightbox, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
+
+  schedulePreview();
+})();
     
   </script>
 
