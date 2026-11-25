@@ -2377,6 +2377,115 @@
     letter-spacing: 2px;
   }
 }
+    /* THE HALL OF RECOGNITION — CINEMATIC LIGHTING */
+
+.awards-visual {
+  isolation: isolate;
+  background: none;
+}
+
+.awards-visual::before,
+.awards-visual::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(235,215,180,.17),
+    rgba(235,215,180,.05) 65%,
+    transparent 100%
+  );
+  clip-path: polygon(
+    46% 0,
+    54% 0,
+    100% 100%,
+    0 100%
+  );
+  filter: blur(25px);
+  opacity: .8;
+}
+
+.awards-visual::before {
+  left: 8.4%;
+}
+
+.awards-visual::after {
+  left: 53.6%;
+  right: auto;
+}
+
+.about-awards.is-animated .awards-visual::before,
+.about-awards.is-animated .awards-visual::after {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.about-awards.is-animated .awards-visual img {
+  opacity: 0;
+  filter: brightness(.15);
+  transform: translateY(20px);
+  transition:
+    opacity 1.8s ease,
+    filter 2s ease,
+    transform 1.8s cubic-bezier(.16,1,.3,1);
+}
+
+.about-awards.is-animated .award-entry {
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity 1.2s ease,
+    transform 1.4s ease;
+}
+
+.about-awards.is-visible .awards-visual::before,
+.about-awards.is-visible .awards-visual::after {
+  opacity: .8;
+}
+
+.about-awards.is-visible .awards-visual img {
+  opacity: 1;
+  filter: brightness(1)
+    drop-shadow(0 15px 35px rgba(0,0,0,.6));
+  transform: translateY(0);
+}
+
+.about-awards.is-visible .awards-visual::after,
+.about-awards.is-visible .awards-visual img:nth-child(2) {
+  transition-delay: .6s;
+}
+
+.about-awards.is-visible .award-entry {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1s;
+}
+
+.about-awards.is-visible .award-entry:nth-child(2) {
+  transition-delay: 1.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .about-awards.is-animated .awards-visual img,
+  .about-awards.is-animated .award-entry {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .about-awards.is-animated .awards-visual::before,
+  .about-awards.is-animated .awards-visual::after {
+    opacity: .8;
+    transition: none;
+  }
+
+}
     
   </style>
 </head>
@@ -3930,6 +4039,43 @@ document.querySelectorAll(".work .project-card").forEach((card, index) => {
   skills.forEach(skill => {
     observer.observe(skill);
   });
+
+})();
+    /* THE HALL OF RECOGNITION — LIGHTING OBSERVER */
+
+(() => {
+
+  const awards = document.querySelector(".about-awards");
+
+  if (!awards || !("IntersectionObserver" in window)) return;
+
+  if (window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches) return;
+
+  const gallery = awards.querySelector(".awards-visual");
+
+  if (!gallery) return;
+
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (!entry.isIntersecting) return;
+
+      awards.classList.add("is-visible");
+
+      observer.unobserve(entry.target);
+
+    });
+
+  }, {
+    threshold: 0.25
+  });
+
+  awards.classList.add("is-animated");
+
+  observer.observe(gallery);
 
 })();
     
