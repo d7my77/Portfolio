@@ -1713,6 +1713,214 @@
     transition: none;
   }
 }
+    /* THE EVOLUTION — ALWAYS IN THE MAKING */
+
+.about-evolution {
+  padding: 100px 7% 130px;
+  background: #0b0c0e;
+  color: #f0e9df;
+  overflow: hidden;
+}
+
+.evolution-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(60px, 10vw, 160px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  margin: 40px 0 30px;
+}
+
+.evolution-title em {
+  display: block;
+  font-weight: 400;
+  color: #b9aa98;
+}
+
+.evolution-intro {
+  font-size: 16px;
+  color: #b9aa98;
+  margin-bottom: 65px;
+}
+
+.career-row {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  align-items: center;
+  gap: 5%;
+  padding: 35px 0;
+  border-top: 1px solid rgba(232,223,211,.18);
+  transition: padding .5s ease,
+    background .5s ease;
+}
+
+.career-year {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(48px, 6.5vw, 105px);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: #a69b8c;
+  transition: color .4s ease;
+}
+
+.career-details h3 {
+  font-family: Georgia, serif;
+  font-size: clamp(22px, 3vw, 45px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #f0e9df;
+  margin: 0 0 12px;
+}
+
+.career-details p {
+  font-size: 11px;
+  letter-spacing: 2px;
+  line-height: 1.7;
+  color: #b9aa98;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.career-row:hover {
+  padding-left: 2%;
+  background: rgba(255,255,255,.025);
+}
+
+.career-row:hover .career-year {
+  color: #f0e9df;
+}
+
+.career-current {
+  margin-top: 35px;
+  padding: 55px 5%;
+  border-top: 1px solid #b9aa98;
+  background: radial-gradient(
+    ellipse at 80% 20%,
+    #302820 0%,
+    #1b1815 45%,
+    #101011 100%
+  );
+}
+
+.career-current-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #b9aa98;
+}
+
+.career-present {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.career-present::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c7b69f;
+  box-shadow: 0 0 12px #c7b69f;
+}
+
+.career-current-year {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(110px, 19vw, 300px);
+  letter-spacing: -0.08em;
+  line-height: 1;
+  color: #f0e9df;
+  margin: 35px 0;
+}
+
+.career-current h3 {
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 80px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+
+.career-current-company {
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  color: #b9aa98;
+}
+
+.career-current-line {
+  height: 1px;
+  background: rgba(232,223,211,.25);
+  margin: 35px 0;
+}
+
+.career-current-quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 3vw, 42px);
+  color: #b9aa98;
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+
+  .about-evolution {
+    padding: 65px 7% 80px;
+  }
+
+  .evolution-title {
+    font-size: 13vw;
+  }
+
+  .evolution-intro {
+    margin-bottom: 40px;
+    font-size: 13px;
+  }
+
+  .career-row {
+    grid-template-columns: 30% 1fr;
+    gap: 7%;
+    padding: 25px 0;
+  }
+
+  .career-year {
+    font-size: 10vw;
+  }
+
+  .career-details h3 {
+    font-size: 20px;
+  }
+
+  .career-details p {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .career-current {
+    padding: 30px 6%;
+  }
+
+  .career-current-header {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .career-current-year {
+    font-size: 23vw;
+  }
+
+  .career-current-company {
+    font-size: 10px;
+  }
+}
     
   </style>
 </head>
@@ -2375,6 +2583,100 @@
         PLATINUM AWARDS
       </span>
     </div>
+
+  </div>
+
+</section>
+
+  <!-- THE EVOLUTION — ALWAYS IN THE MAKING -->
+
+<section class="about-evolution" id="journey">
+
+  <div class="origin-label">
+    THE EVOLUTION / 02
+  </div>
+
+  <h2 class="evolution-title">
+    Always in
+    <em>the Making.</em>
+  </h2>
+
+  <p class="evolution-intro">
+    Every chapter shaped the next.
+  </p>
+
+  <div class="career-timeline">
+
+    <div class="career-row">
+      <span class="career-year">2019</span>
+      <div class="career-details">
+        <h3>Junior Copywriter</h3>
+        <p>Smaat</p>
+      </div>
+    </div>
+
+    <div class="career-row">
+      <span class="career-year">2020</span>
+      <div class="career-details">
+        <h3>Senior Copywriter</h3>
+        <p>Ways Marketing Solutions / Ministry of Transport</p>
+      </div>
+    </div>
+
+    <div class="career-row">
+      <span class="career-year">2021</span>
+      <div class="career-details">
+        <h3>Senior Copywriter</h3>
+        <p>Apilitycomms</p>
+      </div>
+    </div>
+
+    <div class="career-row">
+      <span class="career-year">2022</span>
+      <div class="career-details">
+        <h3>Content Development Lead Officer</h3>
+        <p>Zakat, Tax and Customs Authority</p>
+      </div>
+    </div>
+
+    <div class="career-row">
+      <span class="career-year">2023</span>
+      <div class="career-details">
+        <h3>Content Lead</h3>
+        <p>All Over Group</p>
+      </div>
+    </div>
+
+    <div class="career-row">
+      <span class="career-year">2024</span>
+      <div class="career-details">
+        <h3>Senior Creative Copywriter</h3>
+        <p>PAVO</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="career-current">
+
+    <div class="career-current-header">
+      <span>THE CURRENT CHAPTER</span>
+      <span class="career-present">PRESENT</span>
+    </div>
+
+    <div class="career-current-year">2026.</div>
+
+    <h3>Associate Creative Director</h3>
+
+    <p class="career-current-company">
+      PAVO — February 2026 to Present
+    </p>
+
+    <div class="career-current-line"></div>
+
+    <p class="career-current-quote">
+      From crafting the words to leading the vision.
+    </p>
 
   </div>
 
