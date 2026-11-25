@@ -2212,6 +2212,167 @@
   }
 
 }
+
+    /* THE HALL OF RECOGNITION */
+
+.about-awards {
+  position: relative;
+  padding: 110px 0 90px;
+  background: #080809;
+  color: #f0e9df;
+  overflow: hidden;
+}
+
+.awards-heading {
+  padding: 0 7%;
+}
+
+.awards-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(60px, 11vw, 180px);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.065em;
+  margin: 45px 0 35px;
+}
+
+.awards-title em {
+  display: block;
+  padding-left: 12%;
+  font-weight: 400;
+  color: #b9aa98;
+}
+
+.awards-intro {
+  font-size: clamp(14px, 1.5vw, 20px);
+  line-height: 1.8;
+  color: #b9aa98;
+  margin: 0;
+}
+
+.awards-gallery {
+  position: relative;
+  margin-top: 40px;
+}
+
+.awards-visual {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.awards-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.awards-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    #080809 0%,
+    transparent 15%,
+    transparent 85%,
+    #080809 100%
+  );
+}
+
+.awards-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5%;
+  padding: 20px 7% 65px;
+}
+
+.award-entry {
+  text-align: center;
+}
+
+.award-level {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #c7b69f;
+  margin-bottom: 22px;
+}
+
+.award-entry h3 {
+  font-family: Georgia, serif;
+  font-size: clamp(24px, 3.5vw, 55px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  color: #f0e9df;
+  margin: 0 0 15px;
+}
+
+.award-entry p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #b9aa98;
+  margin: 0;
+}
+
+.awards-signature {
+  margin: 0 7%;
+  padding-top: 35px;
+  border-top: 1px solid rgba(232,223,211,.18);
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 4px;
+  line-height: 1.8;
+  color: #b9aa98;
+}
+
+@media (max-width: 600px) {
+
+  .about-awards {
+    padding: 65px 0 60px;
+  }
+
+  .awards-title {
+    font-size: 13vw;
+    margin: 30px 0;
+  }
+
+  .awards-title em {
+    padding-left: 5%;
+  }
+
+  .awards-gallery {
+    margin-top: 25px;
+  }
+
+  .awards-details {
+    gap: 5%;
+    padding: 15px 5% 40px;
+  }
+
+  .award-level {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+  }
+
+  .award-entry h3 {
+    font-size: 5vw;
+  }
+
+  .award-entry p {
+    font-size: 10px;
+  }
+
+  .awards-signature {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+}
     
   </style>
 </head>
@@ -3057,6 +3218,74 @@
       <span class="skill-arrow" aria-hidden="true">↗</span>
     </div>
 
+  </div>
+
+</section>
+
+  <!-- THE HALL OF RECOGNITION -->
+
+<section class="about-awards" id="awards">
+
+  <div class="awards-heading">
+
+    <div class="origin-label">
+      THE HALL OF RECOGNITION / 04
+    </div>
+
+    <h2 class="awards-title">
+      When the
+      <em>Work Speaks.</em>
+    </h2>
+
+    <p class="awards-intro">
+      Two projects. Two Platinum Awards.
+      One commitment to creative excellence.
+    </p>
+
+  </div>
+
+  <div class="awards-gallery">
+
+    <div class="awards-visual">
+      <img
+        src="muse-platinum.png"
+        alt="Illustration of two MUSE Creative Awards trophies"
+        loading="lazy"
+      >
+    </div>
+
+    <div class="awards-details">
+
+      <div class="award-entry">
+
+        <span class="award-level">
+          PLATINUM WINNER / 2025
+        </span>
+
+        <h3>Elevating Quality of Life.</h3>
+
+        <p>Quality of Life Program</p>
+
+      </div>
+
+      <div class="award-entry">
+
+        <span class="award-level">
+          PLATINUM WINNER / 2025
+        </span>
+
+        <h3>Building What's Next.</h3>
+
+        <p>ZATCA — Binaa Al-Kafaat</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="awards-signature">
+    MUSE CREATIVE AWARDS / SEPTEMBER 2025
   </div>
 
 </section>
